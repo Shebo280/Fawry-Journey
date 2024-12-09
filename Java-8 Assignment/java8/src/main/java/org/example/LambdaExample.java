@@ -32,27 +32,76 @@ public class LambdaExample {
         
         banner("Listing users with age > 5 sorted by name");
         // TODO With functional interfaces declared
+        Predicate<User> usersMoreThan5Ages = new Predicate<User>() {
+            @Override
+            public boolean test(User user) {
+                return user.age>5;
+            }
+        };
+        Comparator<User> sortUsersByNames = new Comparator<User>() {
+            @Override
+            public int compare(User o1, User o2) {
+                return o1.name.compareTo(o2.name);
+            }
+        };
+        repository.select(usersMoreThan5Ages , sortUsersByNames);
 
         banner("Listing users with age > 5 sorted by name - lambda");
         // TODO With functional interfaces used directly
+        repository.select(user -> user.age>5 , (Comparator.comparing(o -> o.name)));
 
         banner("Listing users with age < 10 sorted by age");
         // TODO With functional interfaces declared
+        Predicate<User> usersLessThan10Ages = new Predicate<User>() {
+            @Override
+            public boolean test(User user) {
+                return user.age<10;
+            }
+        };
+        Comparator<User> sortUsersByAges = new Comparator<User>() {
+            @Override
+            public int compare(User o1, User o2) {
+                return Integer.compare(o1.age, o2.age);
+            }
+        };
+        repository.select(usersLessThan10Ages ,sortUsersByAges);
 
         banner("Listing users with age < 10 sorted by age - lambda");
         // TODO With functional interfaces used directly
+        repository.select(user -> user.age<10,Comparator.comparing(o -> o.age));
 
         banner("Listing active users sorted by name");
         // TODO With functional interfaces declared
+        Predicate<User> activeUsers = new Predicate<User>() {
+            @Override
+            public boolean test(User user) {
+                return user.active;
+            }
+        };
+        // Using sortUsersByName declared before
+        repository.select(activeUsers,sortUsersByNames);
 
         banner("Listing active users sorted by name - lambda");
         // TODO With functional interfaces used directly
+        repository.select(user -> user.active,Comparator.comparing(o->o.name));
+
 
         banner("Listing active users with age > 8 sorted by name");
         // TODO With functional interfaces declared
+        Predicate<User> usersMoreThan8Ages = new Predicate<User>() {
+            @Override
+            public boolean test(User user) {
+                return user.age>8;
+            }
+        };
+        // Using sortUsersByName declared before
+
+        repository.select(usersMoreThan8Ages,sortUsersByNames);
 
         banner("Listing active users with age > 8 sorted by name - lambda");
         // TODO With functional interfaces used directly
+        repository.select(user -> user.age>8,Comparator.comparing(o->o.name));
+
 
     }
 

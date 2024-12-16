@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Product</title>
+</head>
+<body>
+<h1>Search for a Product</h1>
+<form action="searchProduct" method="get">
+    <label>
+        <input type="radio" name="searchType" value="id" required>
+        Search by ID
+    </label>
+    <br>
+    <label>
+        <input type="radio" name="searchType" value="name">
+        Search by Name
+    </label>
+    <br>
+    <label for="query">Enter Search Query:</label>
+    <input type="text" id="query" name="query" required>
+    <br>
+    <button type="submit">Search</button>
+</form>
+<br>
+<a href="index.html">Back to Home</a>
+</body>
+</html>

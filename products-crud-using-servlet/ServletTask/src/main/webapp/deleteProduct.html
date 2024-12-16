@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Product</title>
+</head>
+<body>
+<h1>Delete a Product</h1>
+<form action="deleteProduct" method="post">
+    <label>
+        <input type="radio" name="deleteType" value="id" required>
+        Delete by ID
+    </label>
+    <br>
+    <label>
+        <input type="radio" name="deleteType" value="name">
+        Delete by Name
+    </label>
+    <br>
+    <label for="query">Enter ID or Name:</label>
+    <input type="text" id="query" name="query" required>
+    <br>
+    <button type="submit">Delete</button>
+</form>
+<br>
+<a href="index.html">Back to Home</a>
+</body>
+</html>
